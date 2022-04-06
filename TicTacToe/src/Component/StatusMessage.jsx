@@ -8,14 +8,32 @@ const StatusMessage = ({ winner, current }) => {
   return (
     // winner가 있으면 winner를 출력
     // winner가 없으면 NextPlayer를 출력
-    <h2>
+    <div className="status-message">
       {/* 좀 까리한 코드인듯? */}
-      {winner && `Winner is ${winner}`}
-      {!winner &&
-        !noMovesLeft &&
-        `Next player is ${current.isXNext ? 'X' : 'O'}`}
-      {!winner && noMovesLeft && `Tie game`}
-    </h2>
+      {winner && (
+        <>
+          Winner is{' '}
+          <span className={winner === 'X' ? 'text-green' : 'text-orange'}>
+            {winner}
+          </span>
+        </>
+      )}
+      {!winner && !noMovesLeft && (
+        <>
+          Next player is {/* Dynamic className allocation */}
+          <span className={current.isXNext ? 'text-green' : 'text-orange'}>
+            {current.isXNext ? 'X' : 'O'}
+          </span>
+        </>
+      )}
+      {!winner && noMovesLeft && (
+        <>
+          {/* and 뒤로 띄어쓰기 하려면 {' '} 들어가야 함 */}
+          <span className="text-green">X</span> and{' '}
+          <span className="text-orange">O</span> Tied
+        </>
+      )}
+    </div>
   );
 };
 
