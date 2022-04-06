@@ -1,26 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import Square from './Square';
 
-const Board = () => {
-  const [board, setBoard] = useState(Array(9).fill(null));
-
-  console.log(board);
-
-  const handleSquareClick = position => {
-    setBoard();
-  };
-
+const Board = ({ board, handleSquareClick }) => {
+  // Square Component의 상태 변경을 위한 function
   const renderSquare = position => {
     return (
       <Square
         value={board[position]}
         onClick={() => {
-          handleSquareClick();
+          handleSquareClick(position);
         }}
       />
     );
   };
 
+  // Component를 도시하기 위한 코드
   return (
     <div className="board">
       <div className="board-row">
