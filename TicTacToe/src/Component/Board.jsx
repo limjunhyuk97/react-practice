@@ -7,7 +7,7 @@ const Board = () => {
   console.log(board);
 
   const handleSquareClick = position => {
-    setBoard(5);
+    setBoard();
   };
 
   const renderSquare = position => {
