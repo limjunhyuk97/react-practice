@@ -4,19 +4,20 @@ import History from './Component/History';
 import StatusMessage from './Component/StatusMessage';
 import { calculateWinner } from './helpers';
 
+// New Game을 위한 설정
+const NEW_GAME = [{ board: Array(9).fill(null), isXNext: true }];
+
 // Component Always return one single element
 const App = () => {
   // history를 거슬러 올라가기 위한 설정
-  const [history, setHistory] = useState([
-    { board: Array(9).fill(null), isXNext: true },
-  ]);
+  const [history, setHistory] = useState(NEW_GAME);
   const [currentMove, setCurrentMove] = useState(0);
 
   // curret는 현재 board가 어떤지와, 현재 X인지 O인지에 대한 정보가 들어있다.
   const current = history[currentMove];
 
   // winner에 대한 연산
-  const winner = calculateWinner(current.board);
+  const { winner, winningSquares } = calculateWinner(current.board);
 
   // Click에 rerender를 적용하기 위한 function
   // 순서에 따라서 O, X 중 무엇을 도시할 지 결정
@@ -52,11 +53,24 @@ const App = () => {
     setCurrentMove(move);
   };
 
+  // 새로운 게임을 시작하기 위한 정의
+  const onNewGame = () => {
+    setHistory(NEW_GAME);
+    setCurrentMove(0);
+  };
+
   return (
     <div className="app">
       <h1>TIC TAC TOE</h1>
       <StatusMessage winner={winner} current={current} history={history} />
-      <Board board={current.board} handleSquareClick={handleSquareClick} />
+      <Board
+        board={current.board}
+        handleSquareClick={handleSquareClick}
+        winningSquares={winningSquares}
+      />
+      <button type="button" onClick={onNewGame}>
+        new Game
+      </button>
       <History history={history} moveTo={moveTo} currentMove={currentMove} />
     </div>
   );
