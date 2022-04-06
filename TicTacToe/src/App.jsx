@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Board from './Component/Board';
+import History from './Component/History';
 import { calculateWinner } from './helpers';
 
 // Component Always return one single element
@@ -50,11 +51,17 @@ const App = () => {
     setCurrentMove(prev => prev + 1);
   };
 
+  // button을 눌렀을 때 특정 state로 이동하기 위한 function을 정의
+  const moveTo = move => {
+    setCurrentMove(move);
+  };
+
   return (
     <div className="app">
       <h1>TIC TAC TOE</h1>
       <h2>{message}</h2>
       <Board board={current.board} handleSquareClick={handleSquareClick} />
+      <History history={history} moveTo={moveTo} currentMove={currentMove} />
     </div>
   );
 };
