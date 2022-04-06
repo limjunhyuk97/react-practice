@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Board from './Component/Board';
 import History from './Component/History';
+import StatusMessage from './Component/StatusMessage';
 import { calculateWinner } from './helpers';
 
 // Component Always return one single element
@@ -16,11 +17,6 @@ const App = () => {
 
   // winner에 대한 연산
   const winner = calculateWinner(current.board);
-
-  // message에 대한 정의
-  const message = winner
-    ? `Winner is ${winner}`
-    : `Next player is ${current.isXNext ? 'X' : 'O'}`;
 
   // Click에 rerender를 적용하기 위한 function
   // 순서에 따라서 O, X 중 무엇을 도시할 지 결정
@@ -59,7 +55,7 @@ const App = () => {
   return (
     <div className="app">
       <h1>TIC TAC TOE</h1>
-      <h2>{message}</h2>
+      <StatusMessage winner={winner} current={current} history={history} />
       <Board board={current.board} handleSquareClick={handleSquareClick} />
       <History history={history} moveTo={moveTo} currentMove={currentMove} />
     </div>
