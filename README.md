@@ -35,7 +35,6 @@
 
 
 
-
 ## Starting React
 
 - Manually setting up / configuring a project bundler
@@ -48,3 +47,12 @@
 - using React Framework
   - Gatsby
   - NextJS
+
+
+
+
+
+## 01. Tic Tac Toe
+
+<img width="496" alt="image" src="https://user-images.githubusercontent.com/59442344/161982706-8a93f2ca-c172-4f42-a9df-c1e147b96990.png">
+
