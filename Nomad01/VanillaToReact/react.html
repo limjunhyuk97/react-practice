@@ -21,7 +21,7 @@
     const App = () => {
       // useState가 반환하는 state 값은 read-only 값이다.
       // setter 함수 활용 이점
-      // - 함수형 업데이트 활용하면 컴포넌트 최적화 가능 (?)
+      // - 함수형 업데이트 활용하면 현재 값을 바탕으로 컴포넌트 최적화 가능 (number가 현재의 값임을 react가 확실히 보장해준다.)
       // - 컴포넌트 내부의 변경된 부분만 수정 가능 (DOM 엘리먼트를 싹다 다시 만드는게 아니라)
       const [number, setNumber] = React.useState(0);
       const handleClick = (event) => setNumber((number) => number + 1);
