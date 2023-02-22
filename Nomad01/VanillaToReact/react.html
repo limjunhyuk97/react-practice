@@ -19,7 +19,7 @@
     const root = document.querySelector("#root");
     // JSX 형태의 코드로 변경
     // JSX 문법을 사용하여 React Element를 만들기 위해서는 Babel이 필요하다.
-    const Title = (
+    const Title = () => (
       <h3
         id="title"
         onMouseOver={() => {
@@ -29,7 +29,7 @@
         Hello
       </h3>
     );
-    const btn = (
+    const Button = () => (
       <button
         style={{ backgroundColor: "tomato" }}
         onClick={() => {
@@ -39,7 +39,13 @@
         Click me
       </button>
     );
-    const container = React.createElement("div", null, [Title, btn]);
-    ReactDOM.render(container, root);
+    // 사용자 정의 컴포넌트 랜더링
+    const Container = (
+      <div>
+        <Title />
+        <Button />
+      </div>
+    );
+    ReactDOM.render(Container, root);
   </script>
 </html>
