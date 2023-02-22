@@ -11,31 +11,35 @@
   </body>
   <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
-  <script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
     // HTML 만들고 -> JS로 찾고 -> JS로 업데이트 X
     // [React] HTML 만들고 + 업데이트 모두 JS로!
     let number = 0;
     const root = document.querySelector("#root");
-    const span = React.createElement(
-      "span",
-      {
-        id: "sexy-span",
-        style: {
-          color: "red",
-        },
-      },
-      `${number}  `
+    // JSX 형태의 코드로 변경
+    // JSX 문법을 사용하여 React Element를 만들기 위해서는 Babel이 필요하다.
+    const Title = (
+      <h3
+        id="title"
+        onMouseOver={() => {
+          console.log("hello");
+        }}
+      >
+        Hello
+      </h3>
     );
-    const btn = React.createElement(
-      "button",
-      {
-        onClick: () => {
-          console.log("clicked");
-        },
-      },
-      "Click me"
+    const btn = (
+      <button
+        style={{ backgroundColor: "tomato" }}
+        onClick={() => {
+          console.log("click me");
+        }}
+      >
+        Click me
+      </button>
     );
-    const container = React.createElement("div", null, [span, btn]);
+    const container = React.createElement("div", null, [Title, btn]);
     ReactDOM.render(container, root);
   </script>
 </html>
