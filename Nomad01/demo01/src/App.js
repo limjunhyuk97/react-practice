@@ -20,6 +20,11 @@ function App() {
     console.log("Keyword ", keyword, " find");
   }, [keyword]);
 
+  // number라는 state나, keyword라는 state가 변경될 경우에만 실행된다.
+  useEffect(() => {
+    console.log(`Ketword : ${keyword} / number : ${number}`);
+  }, [keyword, number]);
+
   const onClick = () => {
     setNumber((number) => number + 1);
   };
