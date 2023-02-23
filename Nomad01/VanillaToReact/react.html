@@ -17,22 +17,23 @@
 
     const root = document.querySelector("#root");
 
-    // React element 반환
+    const Btn = ({ text }) => {
+      return (
+        <button style={{ backgroundColor: "tomato", borderRadius: "2px" }}>
+          {text}
+        </button>
+      );
+    };
+
     const App = () => {
-      // useState가 반환하는 state 값은 read-only 값이다.
-      // setter 함수 활용 이점
-      // - 함수형 업데이트 활용하면 컴포넌트 최적화 가능 (?)
-      // - 컴포넌트 내부의 변경된 부분만 수정 가능 (DOM 엘리먼트를 싹다 다시 만드는게 아니라)
-      const [number, setNumber] = React.useState(0);
-      const handleClick = (event) => setNumber((number) => number + 1);
       return (
         <div>
-          <h3>Total Clicks : {number}</h3>
-          <button onClick={handleClick}>Click me</button>
+          <Btn text="continue" />
+          <Btn text="continue" />
         </div>
       );
     };
 
-    ReactDOM.render(<App />, root);
+    ReactDOM.render(<App></App>, root);
   </script>
 </html>
