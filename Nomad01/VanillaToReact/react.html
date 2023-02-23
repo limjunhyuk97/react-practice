@@ -12,13 +12,14 @@
   <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
   <script type="text/babel">
     let counter = 0;
 
     const root = document.querySelector("#root");
 
     // props로 변수, 함수 전달 가능
-    const Btn = ({ text, changeValue }) => {
+    const Btn = ({ text, changeValue, fontsize }) => {
       console.log(text, changeValue);
       return (
         <button
@@ -28,6 +29,11 @@
           {text}
         </button>
       );
+    };
+    // prop type을 알려줄 수 있음
+    Btn.propTypes = {
+      text: PropTypes.string,
+      fontsize: PropTypes.number,
     };
 
     // props 변경이 일어날 경우에만 컴포넌트 리랜더링을 수행해주세요
@@ -42,7 +48,7 @@
       // 하지만, 자식 컴포넌트의 리랜더링이 불필요할 경우 props 변경이 일어날 경우에만 리랜더링을 일으키기 위해 React.memo를 활용할 수 있다.
       return (
         <div>
-          <MemorizedBtn text={value} changeValue={changeValue} />
+          <MemorizedBtn text={value} changeValue={changeValue} fontsize="18" />
           <MemorizedBtn text="continue" />
         </div>
       );
