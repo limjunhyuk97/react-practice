@@ -12,72 +12,48 @@
   <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
   <script type="text/babel">
     let counter = 0;
 
     const root = document.querySelector("#root");
 
-    const PlusTwo = () => {
-      return <div>hello</div>;
-    };
-
-    const MinToHours = () => {
-      const [amount, setAmount] = React.useState(0);
-      const [disableMinutes, setDeisableMinutes] = React.useState(false);
-
-      function onChange(event) {
-        setAmount(event.target.value);
-      }
-
-      function onSwitch(event) {
-        setDeisableMinutes((disableMinutes) => !disableMinutes);
-      }
-
+    // props로 변수, 함수 전달 가능
+    const Btn = ({ text, changeValue, fontsize }) => {
+      console.log(text, changeValue);
       return (
-        <div>
-          <h1>Super Converter</h1>
-          <label htmlFor="minutes"></label>
-          <input
-            type="number"
-            id="minutes"
-            placeholder="minutes"
-            value={disableMinutes ? amount * 60 : amount}
-            onChange={onChange}
-            disabled={disableMinutes}
-          />
-          <h2>number you want to change is {amount}</h2>
-          <label htmlFor="hours"></label>
-          <input
-            type="number"
-            id="hours"
-            placeholder="hours"
-            value={disableMinutes ? amount : amount / 60}
-            disabled={!disableMinutes}
-            onChange={onChange}
-          />
-          <button onClick={onSwitch}>Switch</button>
-        </div>
+        <button
+          style={{ backgroundColor: "tomato", borderRadius: "2px" }}
+          onClick={changeValue}
+        >
+          {text}
+        </button>
       );
     };
+    // prop type을 알려줄 수 있음
+    Btn.propTypes = {
+      text: PropTypes.string,
+      fontsize: PropTypes.number.isRequired,
+    };
+
+    // props 변경이 일어날 경우에만 컴포넌트 리랜더링을 수행해주세요
+    const MemorizedBtn = React.memo(Btn);
 
     const App = () => {
-      const [selection, setSelection] = React.useState("0");
-
-      const onChange = (event) => {
-        setSelection((selection) => event.target.value);
+      const [value, setValue] = React.useState("Save Value");
+      const changeValue = () => {
+        setValue("name changed");
       };
-
+      // 부모 컴포넌트의 state가 변경되면, 부모 컴포넌트가 리랜더링 되면서, 자식 컴포넌트들 또한 리랜더링 된다
+      // 하지만, 자식 컴포넌트의 리랜더링이 불필요할 경우 props 변경이 일어날 경우에만 리랜더링을 일으키기 위해 React.memo를 활용할 수 있다.
       return (
         <div>
-          <select onChange={onChange}>
-            <option value="0">hour minute converter</option>
-            <option value="1">mile kilometer converter</option>
-          </select>
-          {selection === "0" ? <MinToHours /> : <PlusTwo />}
+          <MemorizedBtn text={value} changeValue={changeValue} fontsize="18" />
+          <MemorizedBtn text="continue" />
         </div>
       );
     };
 
-    ReactDOM.render(<App />, root);
+    ReactDOM.render(<App></App>, root);
   </script>
 </html>

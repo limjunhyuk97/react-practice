@@ -1,0 +1,6 @@
+/* css를 모듈화 시켜서 특정 컴포넌트에 적용시킬 수 있다. */
+.btn {
+  background-color: blue;
+  color: white;
+  padding: 8px 16px;
+}
