@@ -1,63 +1,27 @@
-import Button from "./Button";
-import styles from "./App.module.css";
-import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Home from "./routes/Home";
+import Coin from "./routes/Coin";
+import Detail from "./routes/Detail";
 
+// App 컴포넌트에서는 라우팅만 진행한다. (react-router-dom)
+// Router : 라우팅을 도와주는 컴포넌트
+// Switch : 한번에 하나의 Route만 랜더링 하기 위해 사용 (Switch 사용하지 않으면 한번에 여러 Route 랜더링 가능)
+// Route : path에 따라서 랜더링할 컴포넌트 지정
 function App() {
-  const [loaded, setLoaded] = useState(false);
-  const [coins, setCoins] = useState([]);
-  const [money, setMoney] = useState(0);
-  const [selectedCoin, setSelectedCoin] = useState(0);
-
-  function handleMoneyChange(event) {
-    setMoney((prev) => Number(event.target.value));
-  }
-
-  function handleCoinSelection(event) {
-    setSelectedCoin((prev) => event.target.value);
-  }
-
-  useEffect(() => {
-    async function fetchCoinData() {
-      await fetch("https://api.coinpaprika.com/v1/tickers")
-        .then((response) => response.json())
-        .then((data) => {
-          setCoins(data);
-          setLoaded(true);
-          console.log(data);
-        });
-    }
-    fetchCoinData();
-  }, []);
-
   return (
-    <div>
-      <h1>The Coins! ({coins.length})</h1>
-      <h2>My money</h2>
-      <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
-        <input type="text" value={money} onChange={handleMoneyChange} />
-        <span>TO</span>
-        <input
-          type="text"
-          value={loaded ? money / coins[selectedCoin].quotes.USD.price : 0}
-          disabled
-        />
-        <span>Coins</span>
-      </div>
-      <h2>Coin options</h2>
-      {loaded ? (
-        <select onChange={handleCoinSelection}>
-          {coins.map((coin, idx) => (
-            <option key={coin.id} value={idx}>
-              <span> {coin.name}</span>
-              <span>({coin.symbol})</span>
-              <span> {coin.quotes.USD.price}</span>
-            </option>
-          ))}
-        </select>
-      ) : (
-        <div>Loading...</div>
-      )}
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/movie">
+          <Detail />
+        </Route>
+        <Route path="/currency">
+          <Coin />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
