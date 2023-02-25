@@ -29,7 +29,7 @@ export default function MovieCard({
       />
       <h2>
         {/* Link는 새로고침을 막아준다. */}
-        <Link to="/movie">{title}</Link>
+        <Link to={`/movie/${id}`}>{title}</Link>
       </h2>
       <h3>{rating} / 10</h3>
       <p style={{ height: "200px", overflow: "scroll" }}>
