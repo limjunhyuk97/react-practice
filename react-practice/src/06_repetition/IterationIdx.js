@@ -6,8 +6,8 @@ class Iteration extends Component {
 	};
 
 	deleteHandler = (idx) => {
-		console.log(idx);
 		return (e) => {
+			console.log(idx);
 			this.setState({
 				...this.state,
 				fruits: this.state.fruits.filter((fruit, i) => i !== idx),

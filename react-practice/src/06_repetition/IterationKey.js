@@ -13,8 +13,8 @@ class Iteration extends Component {
 	};
 
 	deleteHandler = (id) => {
+		console.log("clicked");
 		return (e) => {
-			console.log("clicked");
 			this.setState({
 				...this.state,
 				fruits: this.state.fruits.filter((fruit) => fruit.key !== id),
