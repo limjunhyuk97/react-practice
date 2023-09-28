@@ -8,7 +8,6 @@ const ItemListWrapper = styled.div`
 `;
 
 const ItemList = ({ items, onDelete, onClicked }) => {
-  console.log(items);
   return (
     <ItemListWrapper>
       {items.map((item) => (

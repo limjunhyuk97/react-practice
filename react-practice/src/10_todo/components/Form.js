@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 import styled from 'styled-components';
 
-const FormWrapper = styled.div`
+const FormWrapper = styled.form`
   display: flex;
   width: 100%;
 `;
@@ -40,14 +40,24 @@ const AddButton = styled.button`
 const Form = ({ onInsert }) => {
   const [input, setInput] = useState('');
 
-  const handleInputChange = (e) => {
+  // 한번 만들고 다시 사용함
+  const handleInputChange = useCallback((e) => {
     setInput(e.target.value);
-  };
+  }, []);
 
-  const handleInputSubmit = () => {
-    onInsert(input);
-    setInput('');
-  };
+  // input과 onInsert 함수가 변경될때마다 함수를 다시 만든다.
+  const handleInputSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (input === '') {
+        alert('내용을 입력해주세요!');
+        return;
+      }
+      onInsert(input);
+      setInput('');
+    },
+    [input, onInsert],
+  );
 
   return (
     <FormWrapper>

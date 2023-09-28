@@ -1,21 +1,17 @@
-import { useReducer, useRef } from 'react';
+import { useCallback, useReducer, useRef } from 'react';
 
 const reducer = (state, action) => {
   switch (action.type) {
     case 'DELETE_ITEM':
-      return state.reduce(
-        (acc, item) =>
-          item.id === action.target.id ? [...acc] : [...acc, item],
-        [],
-      );
+      return state.filter((item) => item.id !== action.target.id, []);
     case 'INSERT_ITEM':
       return [...state, action.target];
     case 'CHANGE_CLICKED_ITEM_STATE':
-      return state.reduce(
-        (acc, item) =>
+      return state.map(
+        (item) =>
           item.id === action.target.id
-            ? [...acc, { ...action.target, isdone: !action.target.isdone }]
-            : [...acc, item],
+            ? { ...action.target, isdone: !action.target.isdone }
+            : item,
         [],
       );
   }
@@ -24,6 +20,8 @@ const reducer = (state, action) => {
 const useItems = (initialState) => {
   const [state, dispatcher] = useReducer(reducer, initialState);
 
+  // item count(갯수) 값의 변경은 리랜더링을 일으켜서는 안된다
+  // 따라서 useRef로 지정한다
   const itemCounter = useRef(initialState.length);
 
   const onInsert = (value) => {
@@ -34,13 +32,19 @@ const useItems = (initialState) => {
     });
   };
 
-  const onDelete = (target) => {
-    dispatcher({ type: 'DELETE_ITEM', target });
-  };
+  const onDelete = useCallback(
+    (target) => {
+      dispatcher({ type: 'DELETE_ITEM', target });
+    },
+    [state],
+  );
 
-  const onClicked = (target) => {
-    dispatcher({ type: 'CHANGE_CLICKED_ITEM_STATE', target });
-  };
+  const onClicked = useCallback(
+    (target) => {
+      dispatcher({ type: 'CHANGE_CLICKED_ITEM_STATE', target });
+    },
+    [state],
+  );
 
   return [state, onInsert, onDelete, onClicked];
 };

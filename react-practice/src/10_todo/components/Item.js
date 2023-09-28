@@ -10,6 +10,7 @@ const ItemWrapper = styled.div`
     cursor: pointer;
   }
   background-color: ${(props) => (props.isdone ? '#f6f6f6' : 'none')};
+  border-bottom: 1px solid #cdcdcd;
 `;
 
 const Content = styled.p`
