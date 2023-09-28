@@ -1,0 +1,11 @@
+// sass 변수와 mixin을 styles/utils에 정의해두고 가져와서 사용한다.
+
+$red: red;
+$orange: orange;
+$yellow: yellow;
+
+@mixin square($size) {
+  $calculated: 32px * $size;
+  width: $calculated;
+  height: $calculated;
+}

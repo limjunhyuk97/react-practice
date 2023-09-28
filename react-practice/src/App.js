@@ -20,9 +20,12 @@ import Counter2 from './08_hooks/Counter2';
 import Counter3 from './08_hooks/Counter3';
 import Info from './08_hooks/Info';
 import InfoUseEffect from './08_hooks/InfoUseEffect';
+import CustomInfo from './08_hooks/CustomInfo';
+// 09_styling
+import SassComponent from './09_styling/SassComponent';
 
 const App = ({ id }) => {
-  return <Focus />;
+  return <SassComponent />;
 };
 
 export default App;
