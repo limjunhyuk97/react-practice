@@ -1,0 +1,11 @@
+.innerP {
+  color: red;
+}
+
+.otherP {
+  background-color: aliceblue;
+}
+
+:global .something {
+  color: blue;
+}

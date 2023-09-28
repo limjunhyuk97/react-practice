@@ -1,0 +1,27 @@
+@import './styles/utils.scss';
+
+.ModuleImport {
+  display: flex;
+  background: $oc-blue-6;
+  // ModuleImport의 width가 768px 보다 작을 때는 gray 색상을 적용한다.
+  @include media('<768px') {
+    background-color: $oc-gray-7;
+  }
+  .box {
+    background: red;
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+    &.red {
+      background-color: $red;
+      @include square(1);
+    }
+    &.orange {
+      background-color: $orange;
+      @include square(2);
+    }
+    &.yellow {
+      background-color: $yellow;
+      @include square(3);
+    }
+  }
+}

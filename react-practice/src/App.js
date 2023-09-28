@@ -23,9 +23,18 @@ import InfoUseEffect from './08_hooks/InfoUseEffect';
 import CustomInfo from './08_hooks/CustomInfo';
 // 09_styling
 import SassComponent from './09_styling/SassComponent';
+import CssModuleComponent from './09_styling/CssModuleComponent';
+import ClassNameComponent from './09_styling/ClassNameComponent';
+import BindClassNameComponent from './09_styling/BindClassNameComponent';
+import ScssModuleComponent from './09_styling/ScssModuleComponent';
+import StyledComponent from './09_styling/styledComponents/StyledComponent';
 
 const App = ({ id }) => {
-  return <SassComponent />;
+  return (
+    <div>
+      <StyledComponent />
+    </div>
+  );
 };
 
 export default App;

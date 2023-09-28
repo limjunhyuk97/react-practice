@@ -1,14 +1,14 @@
-import './sass/SassComponent.scss';
+import classNames from 'classnames';
 import './sass/ModuleImport.scss';
 
-const SassComponent = () => {
+const ClassNameComponent = () => {
   return (
     <div className="ModuleImport">
-      <div className="box red"></div>
+      <div className={classNames('box', { red: true })}></div>
       <div className="box orange"></div>
       <div className="box yellow"></div>
     </div>
   );
 };
 
-export default SassComponent;
+export default ClassNameComponent;

@@ -1,0 +1,10 @@
+.wrapper {
+  display: flex;
+  color: red;
+
+  & .box {
+    background-color: green;
+    width: 128px;
+    height: 128px;
+  }
+}
