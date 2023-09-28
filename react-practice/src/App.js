@@ -28,12 +28,22 @@ import ClassNameComponent from './09_styling/ClassNameComponent';
 import BindClassNameComponent from './09_styling/BindClassNameComponent';
 import ScssModuleComponent from './09_styling/ScssModuleComponent';
 import StyledComponent from './09_styling/styledComponents/StyledComponent';
+// 10_todo
+import TodoTemplate from './10_todo/components/Template';
+import Header from './10_todo/components/Header';
+import Form from './10_todo/components/Form';
+import ItemList from './10_todo/components/ItemList';
+import useItems from './10_todo/hooks/useItems';
 
-const App = ({ id }) => {
+const App = () => {
+  const [items, onInsert, onDelete, onClicked] = useItems([]);
+
   return (
-    <div>
-      <StyledComponent />
-    </div>
+    <TodoTemplate>
+      <Header>일정 관리</Header>
+      <Form onInsert={onInsert} />
+      <ItemList items={items} onDelete={onDelete} onClicked={onClicked} />
+    </TodoTemplate>
   );
 };
 
