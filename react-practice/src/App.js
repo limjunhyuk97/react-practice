@@ -34,17 +34,10 @@ import Header from './10_todo/components/Header';
 import Form from './10_todo/components/Form';
 import ItemList from './10_todo/components/ItemList';
 import useItems from './10_todo/hooks/useItems';
+import Todo from './10_todo/Todo';
 
 const App = () => {
-  const [items, onInsert, onDelete, onClicked] = useItems([]);
-
-  return (
-    <TodoTemplate>
-      <Header>일정 관리</Header>
-      <Form onInsert={onInsert} />
-      <ItemList items={items} onDelete={onDelete} onClicked={onClicked} />
-    </TodoTemplate>
-  );
+  return <Todo />;
 };
 
 export default App;
