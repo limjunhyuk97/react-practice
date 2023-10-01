@@ -24,6 +24,8 @@ const useItems = (initialState) => {
   // 따라서 useRef로 지정한다
   const itemCounter = useRef(initialState.length);
 
+  //** 기존 상태 변경을 위한 정보를 action에 담아 dispatch로 보내는 방식이 강제됨
+  //** 따라서 기존 상태에 대한 직접적 의존을 피할 수 있음
   const onInsert = useCallback((value) => {
     itemCounter.current += 1;
     dispatcher({
@@ -32,10 +34,14 @@ const useItems = (initialState) => {
     });
   }, []);
 
+  //** 기존 상태 변경을 위한 정보를 action에 담아 dispatch로 보내는 방식이 강제됨
+  //** 따라서 기존 상태에 대한 직접적 의존을 피할 수 있음
   const onDelete = useCallback((target) => {
     dispatcher({ type: 'DELETE_ITEM', target });
   }, []);
 
+  //** 기존 상태 변경을 위한 정보를 action에 담아 dispatch로 보내는 방식이 강제됨
+  //** 따라서 기존 상태에 대한 직접적 의존을 피할 수 있음
   const onClicked = useCallback((target) => {
     dispatcher({ type: 'CHANGE_CLICKED_ITEM_STATE', target });
   }, []);
