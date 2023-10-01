@@ -35,9 +35,11 @@ import Form from './10_todo/components/Form';
 import ItemList from './10_todo/components/ItemList';
 import useItems from './10_todo/hooks/useItems';
 import Todo from './10_todo/Todo';
+// 11_optimization
+import TodoOptimization from './11_optimization/Todo';
 
 const App = () => {
-  return <Todo />;
+  return <TodoOptimization />;
 };
 
 export default App;
