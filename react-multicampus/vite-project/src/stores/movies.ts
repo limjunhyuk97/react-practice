@@ -17,7 +17,7 @@ interface State {
 // store 정의
 // - 서로 다른 컴포넌트에서 사용되는 값들 공통 값 들 밖으로 뺴기
 // - "return상태값 == generic타입" 되도록 상태 정의
-export const useMovieStore = create<State>((set, get) => {
+export const useMovieStore = create<State>(set => {
   return {
     movies: [],
     loading: false,
