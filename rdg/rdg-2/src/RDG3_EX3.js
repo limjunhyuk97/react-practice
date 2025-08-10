@@ -58,18 +58,33 @@ export default class RDG3_EX3 extends Component {
 }
 
 /*
- * setState에 의한 state 값 업데이트
+ ** setState에 의한 state 값 업데이트
+
   - setState 는 비동기적으로 수행
+
   - setState 첫번째 인자
+
     - 목표 상태 전달하는 경우 : 여러번 setState 호출 시 순서 보장 불가능
+
     - callback으로 전달하는 경우 : 여러번 setState 호출 시 순서 보장 가능 
+
       - callback 첫번째 인자 : 이전 state 상태
+
       - callback 두번째 인자 : 전달받은 props 값
-  - setState 두번째 callback에 state값 변경 후 callback 정의 가능
+
+  - setState 두번째 인자
+
+    - state값 변경 후 호출 되어야할 callback 정의 가능
+
     - 이 callback은 한 함수 내에 정의된 setState의 첫번째 callback들이 모두 실행되고 호출되는 것 같음
- * 이벤트 핸들러는 화살표 함수로 선언되어야 함
+
+ ** 이벤트 핸들러는 화살표 함수로 선언되어야 함
+
   - 위 예시의 moreClick 방식으로 선언할 경우,,,
+
   - class 정의, ES 모듈 내부는 strict mode로 동작함
+
   - strict mode에서 참조(수신자;receiver) 없는 일반함수 호출은 bare call로 처리되며, 이때 함수 내 this는 undefined 처리된다.
+
   - 위 예시의 moreClick은 bareCall로 처리되었으며, 이때 this는 undefined 처리 되기에 에러 발생
  */
