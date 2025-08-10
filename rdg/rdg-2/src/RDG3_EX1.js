@@ -24,3 +24,9 @@ class App extends Component {
 }
 
 export default App;
+
+/*
+* 클래스형 컴포넌트로 Props 받아오는 예시
+- render 함수 에서 this.props 로 props 받아옴
+- static 변수 defaultProps, propsType을 통해서 props의 타입에 대한 정의 가능
+*/
