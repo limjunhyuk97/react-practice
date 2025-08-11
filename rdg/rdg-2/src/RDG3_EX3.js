@@ -6,6 +6,12 @@ export default class RDG3_EX3 extends Component {
     b: 2,
   };
 
+  // 이런식으로 정의하면 X
+  moreClick() {
+    console.log("this : ", this);
+    this.setState({ a: this.state.a + 2 });
+  }
+
   render() {
     // 순서보장 X : 1씩 a 증가
     const handlePlusClick = () => {
@@ -50,8 +56,11 @@ export default class RDG3_EX3 extends Component {
         <div>a is {this.state.a}</div>
         <div>b is {this.state.b}</div>
         <button onClick={handlePlusClick}>제대로 안동작하는 a+2</button>
-        <button onClick={handleMinusClick}>제대로 안동작하는 a+2</button>
-        <button onClick={moreClick}>함수 선언식 핸들러</button>
+        <button onClick={handleMinusClick}>제대로 동작하는 a+2</button>
+        <button onClick={moreClick}>동작 X</button>
+        <button onClick={moreClick.bind(this)}>동작 O</button>
+        <button onClick={this.moreClick}>동작 X</button>
+        <button onClick={this.moreClick.bind(this)}>동작 O</button>
       </div>
     );
   }
@@ -78,13 +87,13 @@ export default class RDG3_EX3 extends Component {
 
     - 이 callback은 한 함수 내에 정의된 setState의 첫번째 callback들이 모두 실행되고 호출되는 것 같음
 
- ** 이벤트 핸들러는 화살표 함수로 선언되어야 함
+ ** class 내부는 strict mode를 따르며, 참조가 명확하지 않은 일반함수 호출은 this에 undefined가 들어가게 된다
 
-  - 위 예시의 moreClick 방식으로 선언할 경우,,,
+  - moreClick : this가 undefined
 
-  - class 정의, ES 모듈 내부는 strict mode로 동작함
+  - moreClick.bind(this) : render 내부 함수 moreClick에 리액트 컴포넌트 객체 this가 바인딩됨
 
-  - strict mode에서 참조(수신자;receiver) 없는 일반함수 호출은 bare call로 처리되며, 이때 함수 내 this는 undefined 처리된다.
+  - this.moreClick : this가 undefined
 
-  - 위 예시의 moreClick은 bareCall로 처리되었으며, 이때 this는 undefined 처리 되기에 에러 발생
+  - this.moreClick.bind(this) : render 외부 메서드 moreClick에 리액트 컴포넌트 객체 this가 바인딩됨
  */
